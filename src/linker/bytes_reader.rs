@@ -8,6 +8,12 @@ impl<'a> BytesReader<'a> {
         Self { bytes, offset: 0 }
     }
 
+    pub fn read_u8(&mut self) -> u8 {
+        let value = self.bytes[self.offset];
+        self.offset += 1;
+        value
+    }
+
     pub fn read_u16(&mut self) -> u16 {
         let value = u16::from_le_bytes(
             self.bytes[self.offset..(self.offset + 2)]
